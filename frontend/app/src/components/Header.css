@@ -1,0 +1,17 @@
+.brand-logo {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.65rem;
+  letter-spacing: 0.04em;
+}
+
+.brand-logo__image {
+  flex: 0 0 auto;
+  height: 38px;
+  width: 38px;
+}
+
+.brand-logo__text {
+  font-weight: 700;
+  text-transform: uppercase;
+}

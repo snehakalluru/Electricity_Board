@@ -1,0 +1,31 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+  <h1>CSV Import Preview</h1>
+  <p><strong>Total rows:</strong> {{ stats.total_rows }}</p>
+  <p><strong>Sample rows:</strong></p>
+  <table class="table">
+    <thead><tr><th>#</th><th>Applicant_Name</th><th>ID</th><th>District</th><th>Pincode</th></tr></thead>
+    <tbody>
+    {% for row in sample %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ row.Applicant_Name }}</td>
+        <td>{{ row.ID_Number|default:row.IDNumber|default:row.ID }}</td>
+        <td>{{ row.District }}</td>
+        <td>{{ row.Pincode }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <p><strong>Existing ID matches:</strong> {{ existing_matches }}</p>
+  <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="upload_path" value="{{ upload_path }}">
+    <button name="import" value="1" class="default">Confirm and Import</button>
+    <a href="..">Cancel</a>
+  </form>
+  <h2>Preview log (first 50 lines)</h2>
+  <pre style="max-height:300px;overflow:auto">{% for l in log_preview %}{{ l }}
+{% endfor %}</pre>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="app-csv-upload">
+    <h1>Upload CSV to import Connections</h1>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <p>
+        <input type="file" name="csv_file" accept=".csv" required>
+      </p>
+      <p>
+        <button type="submit" class="default">Upload</button>
+        <a href="..">Back</a>
+      </p>
+    </form>
+  </div>
+{% endblock %}
